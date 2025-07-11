@@ -186,7 +186,7 @@ body {
   color: #6c757d;
 }
 
-/* Mobile Responsiveness */
+
 @media (max-width: 768px) {
   .app {
     padding: 10px;

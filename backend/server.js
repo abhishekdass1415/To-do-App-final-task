@@ -6,14 +6,11 @@ const path = require('path');
 const app = express();
 const PORT = 5000;
 
-// Middleware
 app.use(cors());
 app.use(express.json());
 
-// Path to todos.json
 const todosPath = path.join(__dirname, 'data', 'todos.json');
 
-// Helper function to read todos
 const readTodos = () => {
   try {
     const data = fs.readFileSync(todosPath, 'utf8');
@@ -24,7 +21,6 @@ const readTodos = () => {
   }
 };
 
-// Helper function to write todos
 const writeTodos = (todos) => {
   try {
     fs.writeFileSync(todosPath, JSON.stringify(todos, null, 2));
@@ -33,7 +29,6 @@ const writeTodos = (todos) => {
   }
 };
 
-// GET /api/todos - Get all todos
 app.get('/api/todos', (req, res) => {
   try {
     const todos = readTodos();
@@ -43,7 +38,6 @@ app.get('/api/todos', (req, res) => {
   }
 });
 
-// POST /api/todos - Add a new todo
 app.post('/api/todos', (req, res) => {
   try {
     const { title } = req.body;
@@ -68,7 +62,6 @@ app.post('/api/todos', (req, res) => {
   }
 });
 
-// DELETE /api/todos/:id - Delete a todo
 app.delete('/api/todos/:id', (req, res) => {
   try {
     const { id } = req.params;
@@ -87,7 +80,6 @@ app.delete('/api/todos/:id', (req, res) => {
   }
 });
 
-// Health check endpoint
 app.get('/api/health', (req, res) => {
   res.json({ status: 'Server is running!' });
 });
